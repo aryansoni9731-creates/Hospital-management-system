@@ -1,0 +1,21 @@
+{
+  "name": "ग्रामीण स्वास्थ्य केंद्र (Rural Hospital OPD)",
+  "short_name": "Hospital OPD",
+  "start_url": "/ui.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2e7d32",
+  "description": "Hospital Management & OPD System for Rural & Town Clinics",
+  "icons": [
+    {
+      "src": "/hospital.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/hospital.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

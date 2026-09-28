@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Registration</title>
+
+      <link rel="stylesheet" href="css/register.css">
+  <script src="js/language.js"></script>
+</head>
+
+<body>
+
+  <header>📝 Patient Registration / मरीज पंजीकरण</header>
+
+  <div class="container">
+    <div class="form-box">
+
+      <h2>मरीज पंजीकरण</h2>
+
+      <form id="form">
+        <label for="name">नाम (Full Name) *</label>
+        <input type="text" id="name" placeholder="उदा. Ramesh Kumar" required>
+
+        <label for="age">उम्र (Age) *</label>
+        <input type="number" id="age" min="0" max="120" placeholder="उदा. 35" required>
+
+        <label for="gender">लिंग (Gender) *</label>
+        <select id="gender" required>
+          <option value="">-- लिंग चुनें (Select) --</option>
+          <option value="Male">पुरुष (Male)</option>
+          <option value="Female">महिला (Female)</option>
+          <option value="Other">अन्य (Other)</option>
+        </select>
+
+        <label for="dob">जन्म तिथि (Date of Birth)</label>
+        <input type="date" id="dob">
+
+        <label for="phone">फ़ोन नंबर (Phone Number - 10 digits) *</label>
+        <input type="tel" id="phone" maxlength="10" placeholder="10 अंकों का मोबाइल नंबर" required>
+
+        <label for="password">पासवर्ड (Password) *</label>
+        <input type="password" id="password" placeholder="सुरक्षित पासवर्ड बनाएं" required>
+
+        <label for="village">गाँव / शहर (Village / City) *</label>
+        <input type="text" id="village" placeholder="उदा. Rampur" required>
+
+        <label for="abhaId">आयुष्मान भारत ABHA ID (Optional)</label>
+        <input type="text" id="abhaId" placeholder="14 अंकों की ABHA ID (यदि उपलब्ध हो)">
+
+        <label for="rationCard">राशन कार्ड संख्या / BPL Card (Optional)</label>
+        <input type="text" id="rationCard" placeholder="राशन कार्ड / BPL कार्ड नंबर">
+
+        <label for="email">ईमेल (E-mail - Optional)</label>
+        <input type="email" id="email" placeholder="name@example.com">
+
+        <button type="submit" id="submitBtn">सबमिट करें (Register)</button>
+      </form>
+
+      <div class="back">
+        <a href="login.html">पहले से खाता है? लॉगिन करें (Login)</a><br><br>
+        <a href="ui.html">⬅ Back to Dashboard</a>
+      </div>
+
+    </div>
+  </div>
+
+      <script src="js/register.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: linear-gradient(135deg, #e3f2fd, #ffffff);
+      }
+
+      header {
+        background: linear-gradient(90deg, #2e7d32, #4caf50);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        font-size: 26px;
+        position: relative;
+      }
+
+      .logout-btn {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 8px;
+        background: #d32f2f;
+        color: white;
+        cursor: pointer;
+      }
+
+      .logout-btn:hover {
+        background: #b71c1c;
+      }
+
+      .container {
+        padding: 30px;
+        text-align: center;
+      }
+
+      .cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 25px;
+        margin-top: 30px;
+      }
+
+      .card {
+        width: 260px;
+        background: white;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+      }
+
+      .icon {
+        font-size: 40px;
+        margin-bottom: 10px;
+      }
+
+      button {
+        margin-top: 15px;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        background: #4caf50;
+        color: white;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #2e7d32;
+      }
+
+      .emergency {
+        margin: 40px auto;
+        width: 280px;
+        background: linear-gradient(90deg, #d32f2f, #ff5252);
+        color: white;
+        padding: 15px;
+        border-radius: 20px;
+        cursor: pointer;
+      }
+
+      footer {
+        text-align: center;
+        padding: 15px;
+        background: #eee;
+        margin-top: 30px;
+      }

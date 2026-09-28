@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Medical Reports & OPD Slips</title>
+
+        <link rel="stylesheet" href="css/report.css">
+    <script src="js/patient-auth.js"></script>
+    <script src="js/language.js"></script>
+  </head>
+
+  <body>
+    <header>📄 मेडिकल रिपोर्ट व पर्ची (Medical Reports & OPD Slips)</header>
+
+    <div class="container">
+      <h2>Search Reports & OPD Slips</h2>
+
+      <div class="search-group">
+        <input
+          type="tel"
+          id="patientid"
+          placeholder="Enter Phone Number (10 digits)"
+          maxlength="10"
+        />
+        <button onclick="getReport()">खोजें (Search)</button>
+      </div>
+
+      <div id="reportBox" class="report-box">
+        <div id="patientInfo" class="patient-card"></div>
+        <h3 style="color: #333; margin-top: 20px">
+          🗓️ अपॉइंटमेंट व ओपीडी पर्ची इतिहास (OPD History)
+        </h3>
+        <div id="appointmentsList"></div>
+      </div>
+
+      <div class="back">
+        <a href="ui.html">⬅ Back to Dashboard</a>
+      </div>
+    </div>
+
+    <!-- OPD Token Slip Modal -->
+    <div id="slipModal" class="slip-modal-overlay">
+      <div class="slip-box">
+        <div id="printableSlipArea" class="slip-ticket">
+          <h3 class="slip-header-title">
+            🏥 सामुदायिक स्वास्थ्य केंद्र (Hospital OPD Slip)
+          </h3>
+          <p style="margin: 3px 0 10px 0; font-size: 13px; color: #666">
+            मरीज ओपीडी पर्ची व टोकन रसीद
+          </p>
+
+          <div style="font-size: 13px; color: #555">
+            कतार टोकन संख्या (OPD Token)
+          </div>
+          <div id="slipToken" class="slip-token-number">Token #1</div>
+
+          <table class="slip-table">
+            <tr>
+              <td><strong>मरीज (Patient):</strong></td>
+              <td id="slipPatient">-</td>
+            </tr>
+            <tr>
+              <td><strong>उम्र / लिंग:</strong></td>
+              <td id="slipAgeGender">-</td>
+            </tr>
+            <tr>
+              <td><strong>फ़ोन (Phone):</strong></td>
+              <td id="slipPhone">-</td>
+            </tr>
+            <tr>
+              <td><strong>गाँव / शहर:</strong></td>
+              <td id="slipVillage">-</td>
+            </tr>
+            <tr>
+              <td><strong>ABHA ID:</strong></td>
+              <td id="slipAbha">-</td>
+            </tr>
+            <tr>
+              <td><strong>डॉक्टर (Doctor):</strong></td>
+              <td id="slipDoctor">-</td>
+            </tr>
+            <tr>
+              <td><strong>🚪 कमरा / कक्ष (Room):</strong></td>
+              <td id="slipRoom" style="font-weight: bold; color: #1b5e20">-</td>
+            </tr>
+            <tr>
+              <td><strong>तारीख व समय:</strong></td>
+              <td id="slipDateTime">-</td>
+            </tr>
+          </table>
+
+          <div
+            id="prescriptionSection"
+            style="
+              display: none;
+              margin-top: 16px;
+              border-top: 2px solid #e0e0e0;
+              padding-top: 12px;
+            "
+          >
+            <h4 style="margin: 0 0 8px">🩺 डॉक्टर की सलाह / Prescription</h4>
+            <div id="slipDiagnosis" style="margin-bottom: 10px"></div>
+            <div>
+              <strong>💊 निर्धारित दवाइयाँ (Prescribed Medicines):</strong>
+            </div>
+            <div id="slipMedicines" style="margin-top: 6px"></div>
+          </div>
+
+          <p style="margin-top: 12px; font-size: 12px; color: #888">
+            ⚠️ कृपया टोकन नंबर आने पर डॉक्टर कक्ष में प्रवेश करें।
+          </p>
+        </div>
+
+        <div class="slip-btn-group">
+          <button class="btn-print" onclick="printSlip()">
+            🖨️ पर्ची प्रिंट करें (Print)
+          </button>
+          <button class="btn-whatsapp" onclick="shareWhatsApp()">
+            📱 WhatsApp पर भेजें
+          </button>
+        </div>
+
+        <div style="text-align: center; margin-top: 15px">
+          <button
+            style="
+              background: none;
+              border: none;
+              color: #666;
+              cursor: pointer;
+              text-decoration: underline;
+            "
+            onclick="closeSlipModal()"
+          >
+            बंद करें (Close)
+          </button>
+        </div>
+      </div>
+    </div>
+
+        <script src="js/report.js"></script>
+  </body>
+</html>

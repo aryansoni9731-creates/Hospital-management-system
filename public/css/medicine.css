@@ -1,0 +1,384 @@
+body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(135deg, #e8f5e9, #ffffff);
+        min-height: 100vh;
+        color: #333;
+      }
+
+      header {
+        background: linear-gradient(90deg, #2e7d32, #4caf50);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .container {
+        padding: 20px;
+        max-width: 950px;
+        margin: auto;
+      }
+
+      .user-welcome-card {
+        background: white;
+        padding: 16px 20px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .user-welcome-card h3 {
+        margin: 0;
+        color: #2e7d32;
+        font-size: 18px;
+      }
+
+      /* Tab Switcher */
+      .tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .tab-btn {
+        flex: 1;
+        min-width: 160px;
+        padding: 12px 18px;
+        border: 2px solid #4caf50;
+        border-radius: 12px;
+        background: white;
+        color: #2e7d32;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        text-align: center;
+      }
+
+      .tab-btn.active {
+        background: linear-gradient(90deg, #4caf50, #2e7d32);
+        color: white;
+        box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Cards */
+      .section-card {
+        background: white;
+        border-radius: 18px;
+        padding: 24px;
+        margin-bottom: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .section-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #2e7d32;
+        margin-top: 0;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* Prescriptions list */
+      .prescription-card {
+        border: 1px solid #e0e0e0;
+        border-left: 5px solid #4caf50;
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+        background: #fafafa;
+        transition: 0.2s;
+      }
+
+      .prescription-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        background: white;
+      }
+
+      .prescription-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+        border-bottom: 1px dashed #ddd;
+        padding-bottom: 8px;
+      }
+
+      .doc-name {
+        font-size: 17px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .app-date {
+        font-size: 14px;
+        color: #777;
+      }
+
+      .med-item {
+        background: white;
+        border: 1px solid #c8e6c9;
+        border-radius: 10px;
+        padding: 12px 16px;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .med-details h4 {
+        margin: 0 0 4px 0;
+        color: #1b5e20;
+        font-size: 16px;
+      }
+
+      .med-details p {
+        margin: 0;
+        font-size: 14px;
+        color: #555;
+      }
+
+      .audio-btn {
+        padding: 8px 14px;
+        background: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: 0.2s;
+      }
+
+      .audio-btn:hover {
+        background: #2e7d32;
+        transform: scale(1.04);
+      }
+
+      /* Daily Tracker Schedule */
+      .schedule-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+        margin-top: 15px;
+      }
+
+      .schedule-card {
+        background: #f9fbf9;
+        border: 2px solid #e8f5e9;
+        border-radius: 15px;
+        padding: 16px;
+        text-align: center;
+      }
+
+      .schedule-time-icon {
+        font-size: 32px;
+        margin-bottom: 6px;
+      }
+
+      .schedule-title {
+        font-weight: bold;
+        color: #2e7d32;
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .schedule-med-list {
+        text-align: left;
+        font-size: 14px;
+      }
+
+      .schedule-med-item {
+        background: white;
+        padding: 8px 12px;
+        border-radius: 8px;
+        margin-bottom: 6px;
+        border: 1px solid #e0e0e0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* Search & Catalog */
+      .search-box {
+        width: 100%;
+        padding: 14px 18px;
+        font-size: 16px;
+        border: 2px solid #c8e6c9;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+        outline: none;
+      }
+
+      .search-box:focus {
+        border-color: #4caf50;
+        box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+      }
+
+      .category-chips {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+      }
+
+      .chip {
+        padding: 6px 14px;
+        background: #e8f5e9;
+        color: #2e7d32;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+        white-space: nowrap;
+        border: 1px solid #c8e6c9;
+        transition: 0.2s;
+      }
+
+      .chip.active,
+      .chip:hover {
+        background: #2e7d32;
+        color: white;
+      }
+
+      .catalog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+      }
+
+      .catalog-card {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 14px;
+        padding: 16px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: 0.2s;
+      }
+
+      .catalog-card:hover {
+        border-color: #4caf50;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .catalog-name {
+        font-size: 18px;
+        font-weight: bold;
+        color: #2e7d32;
+        margin-bottom: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .stock-badge {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: bold;
+      }
+
+      .stock-in {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+
+      .stock-out {
+        background: #ffebee;
+        color: #c62828;
+      }
+
+      .catalog-purpose {
+        font-size: 14px;
+        color: #d32f2f;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .catalog-timing {
+        font-size: 13px;
+        color: #555;
+        margin-bottom: 8px;
+        background: #f1f8e9;
+        padding: 6px 10px;
+        border-radius: 6px;
+      }
+
+      .catalog-warning {
+        font-size: 12px;
+        color: #666;
+        border-top: 1px dashed #eee;
+        padding-top: 6px;
+        margin-bottom: 10px;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 30px;
+        color: #666;
+        background: #f9f9f9;
+        border-radius: 12px;
+      }
+
+      .back {
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 40px;
+      }
+
+      .back a {
+        text-decoration: none;
+        color: #2e7d32;
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .back a:hover {
+        text-decoration: underline;
+      }

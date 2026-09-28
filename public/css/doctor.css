@@ -1,0 +1,382 @@
+body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(135deg, #e8f5e9, #ffffff);
+        min-height: 100vh;
+        color: #333;
+      }
+
+      header {
+        background: linear-gradient(90deg, #1b5e20, #2e7d32);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .container {
+        padding: 20px;
+        max-width: 1050px;
+        margin: auto;
+      }
+
+      .controls-card {
+        background: white;
+        padding: 20px 25px;
+        border-radius: 15px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+      }
+
+      .control-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      label {
+        font-weight: bold;
+        color: #2e7d32;
+        font-size: 15px;
+      }
+
+      select,
+      input[type="date"] {
+        padding: 10px 14px;
+        font-size: 15px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        outline: none;
+        background: #fafafa;
+      }
+
+      select:focus,
+      input[type="date"]:focus {
+        border-color: #2e7d32;
+        box-shadow: 0 0 5px rgba(46, 125, 50, 0.4);
+      }
+
+      .btn-refresh {
+        padding: 10px 18px;
+        background: #2e7d32;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .btn-refresh:hover {
+        background: #1b5e20;
+      }
+
+      /* Stats bar */
+      .stats-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 16px;
+        border-radius: 14px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        text-align: center;
+        border-top: 4px solid #2e7d32;
+      }
+
+      .stat-val {
+        font-size: 28px;
+        font-weight: bold;
+        color: #2e7d32;
+        margin-top: 5px;
+      }
+
+      /* Queue Table */
+      .table-container {
+        background: white;
+        border-radius: 18px;
+        padding: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+      }
+
+      th {
+        background: #f1f8e9;
+        color: #2e7d32;
+        padding: 14px 12px;
+        font-size: 14px;
+        border-bottom: 2px solid #c8e6c9;
+      }
+
+      td {
+        padding: 14px 12px;
+        border-bottom: 1px solid #eee;
+        font-size: 14px;
+      }
+
+      tr:hover {
+        background: #fafafa;
+      }
+
+      .token-badge {
+        display: inline-block;
+        background: #e8f5e9;
+        color: #1b5e20;
+        font-weight: bold;
+        font-size: 14px;
+        padding: 4px 10px;
+        border-radius: 8px;
+        border: 1px solid #a5d6a7;
+      }
+
+      .status-badge {
+        font-size: 12px;
+        font-weight: bold;
+        padding: 4px 10px;
+        border-radius: 12px;
+        display: inline-block;
+      }
+
+      .status-pending {
+        background: #fff3e0;
+        color: #e65100;
+      }
+
+      .status-completed {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+
+      .btn-action {
+        padding: 8px 14px;
+        background: linear-gradient(90deg, #4caf50, #2e7d32);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .btn-action:hover {
+        background: #1b5e20;
+        transform: scale(1.03);
+      }
+
+      /* Prescription Modal */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .modal-box {
+        background: white;
+        width: 100%;
+        max-width: 650px;
+        max-height: 90vh;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        overflow-y: auto;
+        box-sizing: border-box;
+        animation: popIn 0.3s ease;
+      }
+
+      @keyframes popIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #e8f5e9;
+        padding-bottom: 12px;
+        margin-bottom: 16px;
+      }
+
+      .modal-header h3 {
+        margin: 0;
+        color: #2e7d32;
+        font-size: 20px;
+      }
+
+      .patient-summary-box {
+        background: #f9fbf9;
+        border: 1px solid #c8e6c9;
+        border-radius: 12px;
+        padding: 14px;
+        margin-bottom: 16px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        font-size: 14px;
+      }
+
+      .form-group {
+        margin-bottom: 16px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        color: #333;
+        font-size: 14px;
+      }
+
+      textarea,
+      input[type="text"] {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        box-sizing: border-box;
+        outline: none;
+      }
+
+      textarea:focus,
+      input[type="text"]:focus {
+        border-color: #4caf50;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
+      }
+
+      .quick-meds {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+        margin-bottom: 12px;
+      }
+
+      .quick-chip {
+        background: #e8f5e9;
+        color: #2e7d32;
+        border: 1px solid #a5d6a7;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.2s;
+      }
+
+      .quick-chip:hover {
+        background: #2e7d32;
+        color: white;
+      }
+
+      .prescribed-list {
+        background: #fafafa;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 10px;
+        min-height: 50px;
+        max-height: 120px;
+        overflow-y: auto;
+        margin-bottom: 16px;
+      }
+
+      .med-tag-item {
+        display: inline-flex;
+        align-items: center;
+        background: #e3f2fd;
+        color: #1565c0;
+        border-radius: 15px;
+        padding: 4px 10px;
+        margin: 3px;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .med-tag-remove {
+        margin-left: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        color: #c62828;
+      }
+
+      .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .btn-save {
+        padding: 12px 24px;
+        background: linear-gradient(90deg, #4caf50, #2e7d32);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .btn-save:hover {
+        background: #1b5e20;
+      }
+
+      .btn-close {
+        padding: 12px 18px;
+        background: #eee;
+        border: none;
+        border-radius: 10px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      .back {
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 40px;
+      }
+
+      .back a {
+        text-decoration: none;
+        color: #2e7d32;
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .back a:hover {
+        text-decoration: underline;
+      }

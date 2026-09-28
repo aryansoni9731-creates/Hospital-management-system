@@ -1,0 +1,304 @@
+body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        margin: 0;
+        background: #f0f8ff;
+        text-align: center;
+        color: #333;
+      }
+
+      header {
+        background: linear-gradient(90deg, #2e7d32, #4caf50);
+        color: white;
+        padding: 20px;
+        font-size: 24px;
+      }
+
+      .container {
+        max-width: 700px;
+        margin: 30px auto;
+        background: white;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        box-sizing: border-box;
+      }
+
+      .search-group {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      input {
+        flex: 1;
+        padding: 12px 15px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        outline: none;
+      }
+
+      input:focus {
+        border-color: #4caf50;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
+      }
+
+      button {
+        padding: 12px 24px;
+        background: linear-gradient(90deg, #4caf50, #2e7d32);
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      button:hover {
+        background: #2e7d32;
+      }
+
+      .report-box {
+        margin-top: 20px;
+        text-align: left;
+        display: none;
+      }
+
+      .patient-card {
+        background: #e8f5e9;
+        border-left: 5px solid #2e7d32;
+        padding: 16px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+
+      .patient-card h3 {
+        margin-top: 0;
+        color: #2e7d32;
+      }
+
+      .patient-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        font-size: 14px;
+      }
+
+      .appointment-item {
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        padding: 16px;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .app-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+        border-bottom: 1px dashed #ddd;
+        padding-bottom: 8px;
+      }
+
+      .token-pill {
+        background: #ffebee;
+        color: #c62828;
+        font-weight: bold;
+        padding: 3px 8px;
+        border-radius: 6px;
+        font-size: 13px;
+      }
+
+      .status-tag {
+        font-size: 12px;
+        padding: 3px 8px;
+        border-radius: 10px;
+        font-weight: 600;
+      }
+
+      .status-done {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+
+      .status-wait {
+        background: #fff3e0;
+        color: #e65100;
+      }
+
+      .diag-box {
+        background: #fffde7;
+        border-left: 3px solid #fbc02d;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 13px;
+        margin: 8px 0;
+        color: #333;
+      }
+
+      .med-tag {
+        display: inline-block;
+        background: #e3f2fd;
+        color: #1565c0;
+        padding: 4px 10px;
+        border-radius: 15px;
+        font-size: 13px;
+        margin-right: 5px;
+        margin-top: 5px;
+      }
+
+      .btn-slip {
+        padding: 6px 14px;
+        background: #2e7d32;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .btn-slip:hover {
+        background: #1b5e20;
+      }
+
+      /* Modal for Printable OPD Slip */
+      .slip-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 3000;
+        padding: 15px;
+        box-sizing: border-box;
+      }
+
+      .slip-box {
+        background: white;
+        width: 100%;
+        max-width: 480px;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        position: relative;
+      }
+
+      .slip-ticket {
+        border: 2px dashed #2e7d32;
+        border-radius: 12px;
+        padding: 18px;
+        background: #fdfdfd;
+        text-align: center;
+        margin-bottom: 18px;
+      }
+
+      .slip-header-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #2e7d32;
+        margin: 0;
+      }
+
+      .slip-token-number {
+        font-size: 32px;
+        font-weight: 900;
+        color: #d32f2f;
+        margin: 8px 0;
+        background: #ffebee;
+        display: inline-block;
+        padding: 4px 18px;
+        border-radius: 10px;
+      }
+
+      .slip-table {
+        width: 100%;
+        text-align: left;
+        font-size: 14px;
+        margin-top: 10px;
+        border-collapse: collapse;
+      }
+
+      .slip-table td {
+        padding: 6px 4px;
+        border-bottom: 1px dotted #e0e0e0;
+      }
+
+      .slip-btn-group {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .btn-print {
+        flex: 1;
+        padding: 12px;
+        background: #2e7d32;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 15px;
+        cursor: pointer;
+      }
+
+      .btn-whatsapp {
+        flex: 1;
+        padding: 12px;
+        background: #25d366;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 15px;
+        cursor: pointer;
+      }
+
+      .no-data {
+        padding: 20px;
+        background: #fff3e0;
+        color: #e65100;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      .back {
+        text-align: center;
+        margin-top: 25px;
+      }
+
+      .back a {
+        text-decoration: none;
+        color: #2e7d32;
+        font-weight: bold;
+        font-size: 15px;
+      }
+
+      .back a:hover {
+        text-decoration: underline;
+      }
+
+      @media print {
+        body * {
+          visibility: hidden;
+        }
+        #printableSlipArea,
+        #printableSlipArea * {
+          visibility: visible;
+        }
+        #printableSlipArea {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+        }
+      }

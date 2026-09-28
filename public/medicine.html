@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Medicine & Prescription Guide</title>
+
+        <link rel="stylesheet" href="css/medicine.css">
+    <script src="js/patient-auth.js"></script>
+    <script src="js/language.js"></script>
+  </head>
+
+  <body>
+    <header>💊 मरीज दवा केंद्र (Patient Medicine Center)</header>
+
+    <div class="container">
+      <!-- Logged in Patient Banner -->
+      <div class="user-welcome-card">
+        <div>
+          <h3 id="welcomeUser">👤 Welcome, Patient</h3>
+          <span id="userPhone" style="font-size: 13px; color: #666"
+            >Phone: -</span
+          >
+        </div>
+        <button class="audio-btn" onclick="speakSummary()">
+          🔊 आज की दवाइयाँ सुनें (Listen Summary)
+        </button>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="tabs">
+        <button
+          class="tab-btn active"
+          onclick="switchTab('prescriptionsTab', this)"
+        >
+          📑 मेरी लिखी हुई दवाइयाँ (My Prescriptions)
+        </button>
+        <button class="tab-btn" onclick="switchTab('scheduleTab', this)">
+          ⏰ दैनिक समय सारिणी (Daily Schedule)
+        </button>
+        <button class="tab-btn" onclick="switchTab('guideTab', this)">
+          🔍 अस्पताल दवा निर्देशिका (Medicine Directory)
+        </button>
+      </div>
+
+      <!-- TAB 1: Patient's Prescriptions -->
+      <div id="prescriptionsTab" class="tab-content active">
+        <div class="section-card">
+          <h3 class="section-title">
+            🩺 डॉक्टर द्वारा लिखी गई दवाइयाँ (Doctor Prescriptions)
+          </h3>
+          <div id="prescriptionsContainer">
+            <div class="empty-state">
+              दवा रिकॉर्ड लोड हो रहे हैं... (Loading prescriptions...)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: Daily Dosage Schedule -->
+      <div id="scheduleTab" class="tab-content">
+        <div class="section-card">
+          <h3 class="section-title">
+            ⏰ आज की खुराक दिनचर्या (Today's Dosage Routine)
+          </h3>
+          <p style="font-size: 14px; color: #666; margin-top: -8px">
+            अपनी दवा लेने के बाद चेकबॉक्स पर टिक करें (Check off medicines as
+            you take them).
+          </p>
+
+          <div class="schedule-grid">
+            <!-- Morning -->
+            <div class="schedule-card">
+              <div class="schedule-time-icon">🌅</div>
+              <div class="schedule-title">सुबह (Morning)</div>
+              <p style="font-size: 12px; color: #777">
+                नाश्ते के बाद / Before/After Breakfast
+              </p>
+              <div id="morningMeds" class="schedule-med-list">
+                <div class="schedule-med-item">
+                  <span>Paracetamol (500mg)</span>
+                  <input type="checkbox" />
+                </div>
+                <div class="schedule-med-item">
+                  <span>Pantoprazole (खाली पेट)</span>
+                  <input type="checkbox" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Afternoon -->
+            <div class="schedule-card">
+              <div class="schedule-time-icon">🌞</div>
+              <div class="schedule-title">दोपहर (Afternoon)</div>
+              <p style="font-size: 12px; color: #777">
+                दोपहर के भोजन के बाद / After Lunch
+              </p>
+              <div id="afternoonMeds" class="schedule-med-list">
+                <div class="schedule-med-item">
+                  <span>Cough Syrup (10ml)</span>
+                  <input type="checkbox" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Night -->
+            <div class="schedule-card">
+              <div class="schedule-time-icon">🌙</div>
+              <div class="schedule-title">रात (Night)</div>
+              <p style="font-size: 12px; color: #777">
+                रात के भोजन के बाद / After Dinner
+              </p>
+              <div id="nightMeds" class="schedule-med-list">
+                <div class="schedule-med-item">
+                  <span>Paracetamol (500mg)</span>
+                  <input type="checkbox" />
+                </div>
+                <div class="schedule-med-item">
+                  <span>Cetirizine (10mg)</span>
+                  <input type="checkbox" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: Hospital Medicine Guide & Directory -->
+      <div id="guideTab" class="tab-content">
+        <div class="section-card">
+          <h3 class="section-title">
+            🔍 अस्पताल सामान्य दवा गाइड (Hospital Medicine Guide)
+          </h3>
+
+          <input
+            type="text"
+            id="searchInput"
+            class="search-box"
+            placeholder="दवाई का नाम या बीमारी खोजें (e.g., Paracetamol, बुखार, Pain, खांसी)..."
+            onkeyup="filterMedicines()"
+          />
+
+          <div class="category-chips">
+            <span class="chip active" onclick="filterCategory('All', this)"
+              >सभी (All)</span
+            >
+            <span class="chip" onclick="filterCategory('Fever', this)"
+              >🌡️ बुखार (Fever)</span
+            >
+            <span class="chip" onclick="filterCategory('Cold', this)"
+              >🤧 सर्दी-खांसी (Cold & Cough)</span
+            >
+            <span class="chip" onclick="filterCategory('Pain', this)"
+              >⚡ दर्द (Pain Relief)</span
+            >
+            <span class="chip" onclick="filterCategory('Antibiotic', this)"
+              >💊 एंटीबायोटिक (Antibiotic)</span
+            >
+            <span class="chip" onclick="filterCategory('Acidity', this)"
+              >🤢 गैस-एसिडिटी (Acidity & Stomach)</span
+            >
+            <span class="chip" onclick="filterCategory('Vitamins', this)"
+              >🌿 विटामिन्स (Vitamins)</span
+            >
+          </div>
+
+          <div id="catalogGrid" class="catalog-grid">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <div class="back">
+        <a href="ui.html">⬅ Back to Dashboard</a>
+      </div>
+    </div>
+
+        <script src="js/medicine.js"></script>
+  </body>
+</html>

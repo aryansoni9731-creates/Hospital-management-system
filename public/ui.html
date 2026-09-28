@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hospital Dashboard</title>
+
+        <link rel="stylesheet" href="css/ui.css">
+    <script src="js/patient-auth.js"></script>
+    <script src="js/language.js"></script>
+  </head>
+
+  <body>
+    <header>🏥 Hospital Dashboard</header>
+
+    <div class="container">
+      <h2 id="welcomeText">Welcome</h2>
+      <p>Manage everything in one place</p>
+
+      <!-- Active / Upcoming OPD Token Card -->
+      <div
+        id="activeTokenCard"
+        style="
+          display: none;
+          max-width: 620px;
+          margin: 0 auto 25px auto;
+          background: white;
+          border: 2px solid #4caf50;
+          border-radius: 16px;
+          padding: 20px;
+          box-shadow: 0 6px 20px rgba(46, 125, 50, 0.15);
+          text-align: left;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px dashed #c8e6c9;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+          "
+        >
+          <span style="font-weight: bold; color: #2e7d32; font-size: 16px"
+            >🎫 आपका वर्तमान टोकन (Your Active OPD Token)</span
+          >
+          <span
+            id="activeStatusBadge"
+            style="
+              background: #fff3e0;
+              color: #e65100;
+              font-size: 12px;
+              font-weight: bold;
+              padding: 4px 10px;
+              border-radius: 12px;
+            "
+            >प्रतीक्षारत (Waiting)</span
+          >
+        </div>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+          "
+        >
+          <div>
+            <div
+              id="activeTokenNum"
+              style="font-size: 30px; font-weight: 900; color: #d32f2f"
+            >
+              Token #1
+            </div>
+            <div
+              id="activeDoctorRoom"
+              style="
+                font-size: 15px;
+                color: #333;
+                margin-top: 4px;
+                font-weight: 600;
+              "
+            >
+              👨‍⚕️ Dr. Sharma | 🚪 Room 1
+            </div>
+            <div
+              id="activeDateTime"
+              style="font-size: 13px; color: #666; margin-top: 2px"
+            >
+              🗓️ Today (10:00 AM)
+            </div>
+          </div>
+          <button
+            onclick="go('report.html')"
+            style="
+              margin: 0;
+              padding: 12px 20px;
+              font-size: 14px;
+              background: #2e7d32;
+            "
+          >
+            🖨️ पर्ची देखें (View Slip)
+          </button>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card login-card">
+          <div class="icon">🔐</div>
+          <h3>Login</h3>
+          <p>Login as patient</p>
+          <button onclick="go('login.html')">Open</button>
+        </div>
+
+        <div class="card">
+          <div class="icon">📝</div>
+          <h3>Register Patient</h3>
+          <p>Add new patient details</p>
+          <button onclick="go('register.html')">Open</button>
+        </div>
+
+        <div class="card">
+          <div class="icon">📅</div>
+          <h3>Book Appointment</h3>
+          <p>Schedule your visit</p>
+          <button onclick="go('appointment.html')">Open</button>
+        </div>
+
+        <div class="card">
+          <div class="icon">📄</div>
+          <h3>View Reports</h3>
+          <p>Check your reports</p>
+          <button onclick="go('report.html')">Open</button>
+        </div>
+
+        <div class="card">
+          <div class="icon">💊</div>
+          <h3>Medicine Info</h3>
+          <p>Listen to dosage & info</p>
+          <button onclick="go('medicine.html')">Open</button>
+        </div>
+
+        <div class="card">
+          <div class="icon">👨‍⚕️</div>
+          <h3>Doctor OPD Portal</h3>
+          <p>Queue & Prescriptions</p>
+          <button onclick="go('doctor.html')" style="background: #1b5e20">
+            Open Portal
+          </button>
+        </div>
+      </div>
+
+      <div class="emergency" onclick="go('emergency.html')">
+        🚑 Emergency Help
+      </div>
+    </div>
+
+    <footer>© 2026 Hospital System</footer>
+
+        <script src="js/ui.js"></script>
+  </body>
+</html>

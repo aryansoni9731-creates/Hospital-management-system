@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor & Staff OPD Portal</title>
+
+        <link rel="stylesheet" href="css/doctor.css">
+  </head>
+
+  <body>
+    <header>👨‍⚕️ डॉक्टर व स्टाफ ओपीडी पोर्टल (Doctor & OPD Queue Portal)</header>
+
+    <div class="container">
+      <!-- Controls -->
+      <div class="controls-card">
+        <div class="control-group">
+          <label for="doctorSelect">👨‍⚕️ डॉक्टर चुनें (Select Doctor):</label>
+          <select id="doctorSelect" onchange="loadDoctorQueue()">
+            <option value="Dr. Sharma">
+              डॉ. शर्मा (Dr. Sharma - General Physician)
+            </option>
+            <option value="Dr. Roy">
+              डॉ. रॉय (Dr. Roy - Child Specialist)
+            </option>
+            <option value="Dr. Tanwar">
+              डॉ. तंवर (Dr. Tanwar - Bone Specialist)
+            </option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="queueDate">🗓️ तारीख (Date):</label>
+          <input type="date" id="queueDate" onchange="loadDoctorQueue()" />
+        </div>
+
+        <button class="btn-refresh" onclick="loadDoctorQueue()">
+          🔄 रीफ्रेश (Refresh)
+        </button>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div>कुल मरीज (Total OPD Queue)</div>
+          <div id="totalPatients" class="stat-val">0</div>
+        </div>
+        <div class="stat-card" style="border-top-color: #e65100">
+          <div>प्रतीक्षारत (Waiting / Pending)</div>
+          <div id="pendingCount" class="stat-val" style="color: #e65100">0</div>
+        </div>
+        <div class="stat-card" style="border-top-color: #2e7d32">
+          <div>पूर्ण जांच (Completed)</div>
+          <div id="completedCount" class="stat-val" style="color: #2e7d32">
+            0
+          </div>
+        </div>
+      </div>
+
+      <!-- Queue Table -->
+      <div class="table-container">
+        <h3 style="margin-top: 0; color: #2e7d32">
+          📋 आज की मरीज कतार (Today's Patient Queue)
+        </h3>
+        <table>
+          <thead>
+            <tr>
+              <th>टोकन (Token #)</th>
+              <th>मरीज का नाम (Name)</th>
+              <th>उम्र / लिंग (Age/Sex)</th>
+              <th>गाँव (Village)</th>
+              <th>ABHA ID / फ़ोन</th>
+              <th>समय (Slot)</th>
+              <th>स्थिति (Status)</th>
+              <th>कार्रवाई (Action)</th>
+            </tr>
+          </thead>
+          <tbody id="queueTbody">
+            <tr>
+              <td
+                colspan="8"
+                style="text-align: center; padding: 25px; color: #777"
+              >
+                कतार लोड हो रही है... (Loading queue...)
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="back">
+        <a href="ui.html">⬅ Back to Dashboard</a>
+      </div>
+    </div>
+
+    <!-- Examination & Prescription Modal -->
+    <div id="prescribeModal" class="modal-overlay">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3>🩺 मरीज परीक्षण व दवाई नुस्खा (Prescription)</h3>
+          <span style="cursor: pointer; font-size: 20px" onclick="closeModal()"
+            >✕</span
+          >
+        </div>
+
+        <div id="modalPatientSummary" class="patient-summary-box">
+          <!-- Filled dynamically -->
+        </div>
+
+        <div class="form-group">
+          <label for="diagInput"
+            ><strong
+              >📝 रोग का विवरण / निदान (Diagnosis & Symptoms):</strong
+            ></label
+          >
+          <textarea
+            id="diagInput"
+            rows="2"
+            placeholder="उदा. Viral fever with mild body ache, BP Normal..."
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label
+            ><strong>💊 दवाइयाँ लिखें (Prescribe Medicines):</strong></label
+          >
+
+          <!-- Quick add chips -->
+          <div class="quick-meds">
+            <span
+              class="quick-chip"
+              onclick="addMed('Paracetamol (500mg) - दिन में 2 बार (1-0-1)')"
+              >+ Paracetamol (500mg)</span
+            >
+            <span
+              class="quick-chip"
+              onclick="addMed('Pantoprazole (40mg) - खाली पेट सुबह (1-0-0)')"
+              >+ Pan-40 (खाली पेट)</span
+            >
+            <span
+              class="quick-chip"
+              onclick="addMed('Cough Syrup (10ml) - दिन में 3 बार (1-1-1)')"
+              >+ Cough Syrup</span
+            >
+            <span
+              class="quick-chip"
+              onclick="addMed('Amoxicillin (500mg) - 5 दिन (1-0-1)')"
+              >+ Amoxicillin (500mg)</span
+            >
+            <span
+              class="quick-chip"
+              onclick="addMed('Cetirizine (10mg) - रात को (0-0-1)')"
+              >+ Cetirizine (रात को)</span
+            >
+            <span class="quick-chip" onclick="addMed('ORS घोल - आवश्यकतानुसार')"
+              >+ ORS घोल</span
+            >
+            <span
+              class="quick-chip"
+              onclick="addMed('B-Complex Capsules (0-1-0)')"
+              >+ B-Complex</span
+            >
+          </div>
+
+          <div style="display: flex; gap: 8px">
+            <input
+              type="text"
+              id="customMedInput"
+              placeholder="अन्य दवाई का नाम व खुराक दर्ज करें..."
+            />
+            <button
+              type="button"
+              class="btn-action"
+              style="white-space: nowrap"
+              onclick="addCustomMed()"
+            >
+              + जोड़ें (Add)
+            </button>
+          </div>
+        </div>
+
+        <label
+          ><strong
+            >लिखित दवाइयों की सूची (Prescribed Medicines List):</strong
+          ></label
+        >
+        <div id="prescribedTags" class="prescribed-list">
+          <span style="color: #888; font-size: 13px"
+            >कोई दवाई नहीं जोड़ी गई (No medicines added yet)</span
+          >
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-close" onclick="closeModal()">
+            रद्द करें (Cancel)
+          </button>
+          <button
+            id="savePrescriptionBtn"
+            class="btn-save"
+            onclick="savePrescription()"
+          >
+            💾 नुस्खा सहेजें व पूरा करें (Save & Complete)
+          </button>
+        </div>
+      </div>
+    </div>
+
+        <script src="js/doctor.js"></script>
+  </body>
+</html>
